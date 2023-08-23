@@ -6246,7 +6246,7 @@ function copyToClipboard(str) {
 function file_video(path) {
   const url = window.location.origin + path;
   var file_name = decodeURIComponent(path.trim("/").split("/").slice(-1)[0].replaceAll("%5C%5C", "%5C"));
-  var file_name_without_ext = file_name.substring(0, file_name.length - `.${ext}`.length);
+  var file_name_without_ext = file_name.substring(0, file_name.lastIndexOf('.'));
   console.log('HANDLE VIDEO', url, file_name, file_name_without_ext);
   // alert(url);
   let player_items = [
