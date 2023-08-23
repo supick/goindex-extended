@@ -5513,6 +5513,9 @@ document.write(
   '<script src="//rawcdn.githack.com/cheems/goindex-extended/295ceaf2d64b2cb8578b21c0313d75b7bc8738a1/js/DPlayer.min.js"></script>'
 );
 document.write(
+  '<script src="https://content.jwplatform.com/libraries/IDzF9Zmk.js" type="text/javascript"></script>'
+);
+document.write(
   '<script src="//cdn.jsdelivr.net/npm/marked@4.0.0/marked.min.js"></script>'
 );
 document.write(
@@ -6271,6 +6274,7 @@ function file_video(path) {
       <ul class="mdui-menu" id="player-items">${player_items}</ul>`;
   const content = `
 <div class="mdui-container-fluid">
+  <div class="mdui-video-fluid mdui-center" id="video_container"></div>
 	<br>
 	<div class="mdui-video-fluid mdui-center" id="dplayer"></div>
 	<br>${playBtn}
@@ -6291,6 +6295,25 @@ function file_video(path) {
     copyToClipboard(url);
     mdui.snackbar("Copied to clipboard!");
   });
+  var player = jwplayer("video_container");
+  player.setup({
+      "sources":[
+          {
+              "type": 'video/mp4',
+              "file": url
+          }
+      ],
+      tracks: [],
+      "width": "100%",
+      "autostart": "true",
+      "primary": "html5",
+      "playbackRateControls": true,
+      "preload": "none",
+      // cast: {"appid": "00000000"},
+      // "base": ".",
+      androidhls:true
+  });
+  
   const dp = new DPlayer({
     container: document.getElementById("dplayer"),
     loop: false,
