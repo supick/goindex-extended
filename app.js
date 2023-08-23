@@ -5479,7 +5479,6 @@
   );
 });
 
-console.log('WHY???');
 if (UI.dark_mode) {
   document.write(
     '<meta name="theme-color" content="#273139">'
@@ -6247,8 +6246,8 @@ function copyToClipboard(str) {
 function file_video(path) {
   const url = window.location.origin + path;
   var file_name = decodeURIComponent(path.trim("/").split("/").slice(-1)[0].replaceAll("%5C%5C", "%5C"));
-  console.log(url, file_name);
-  alert(url);
+  console.log('HANDLE VIDEO', url, file_name);
+  // alert(url);
   let player_items = [
     {
       text: "MXPlayer(Free)",
@@ -6302,7 +6301,7 @@ function file_video(path) {
     console.log(res.data.files);
 
   }
-  var folder_path = path.substring(0, path.lastIndexOf('/'))
+  var folder_path = path.substring(0, path.lastIndexOf('/') + 1)
   requestListPath(
     folder_path,
     {
