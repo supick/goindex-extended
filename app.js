@@ -5479,7 +5479,7 @@
   );
 });
 
-
+console.log('WHY???');
 if (UI.dark_mode) {
   document.write(
     '<meta name="theme-color" content="#273139">'
