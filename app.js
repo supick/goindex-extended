@@ -6247,6 +6247,7 @@ function copyToClipboard(str) {
 function file_video(path) {
   const url = window.location.origin + path;
   var file_name = decodeURIComponent(path.trim("/").split("/").slice(-1)[0].replaceAll("%5C%5C", "%5C"));
+  console.log(url, file_name);
   let player_items = [
     {
       text: "MXPlayer(Free)",
@@ -6295,6 +6296,21 @@ function file_video(path) {
     copyToClipboard(url);
     mdui.snackbar("Copied to clipboard!");
   });
+
+  function successVideoCallback(res, path, prevReqParams) {
+    console.log(res.data.files);
+
+  }
+  var folder_path = path.substring(0, path.lastIndexOf('/'))
+  requestListPath(
+    folder_path,
+    {
+      
+    },
+    successVideoCallback,
+    null
+  );
+
   var player = jwplayer("video_container");
   player.setup({
       "sources":[
