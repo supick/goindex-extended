@@ -6246,7 +6246,8 @@ function copyToClipboard(str) {
 function file_video(path) {
   const url = window.location.origin + path;
   var file_name = decodeURIComponent(path.trim("/").split("/").slice(-1)[0].replaceAll("%5C%5C", "%5C"));
-  console.log('HANDLE VIDEO', url, file_name);
+  var file_name_without_ext = file_name.substring(0, file_name.length - `.${ext}`.length);
+  console.log('HANDLE VIDEO', url, file_name, file_name_without_ext);
   // alert(url);
   let player_items = [
     {
@@ -6298,7 +6299,19 @@ function file_video(path) {
   });
 
   function successVideoCallback(res, path, prevReqParams) {
-    console.log(res.data.files);
+    let rdata = res.data.files;
+    console.log(rdata);
+    console.log('DEBUG', file_name_without_ext)
+    for (let i = 0; i < rdata.length; i++) {
+      let item = rdata[i];
+      let item_name = item.name;
+      let item_name_lower = item_name_lower.toLowerCase();
+      if (item_name_lower.endsWith('.srt') || item_name_lower.endsWith('.vtt')) {
+        if (item_name.includes(file_name_without_ext)) {
+          console.log('Success', item_name);
+        }
+      }
+    }
 
   }
   var folder_path = path.substring(0, path.lastIndexOf('/') + 1)
