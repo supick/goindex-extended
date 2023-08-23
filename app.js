@@ -6248,6 +6248,7 @@ function file_video(path) {
   const url = window.location.origin + path;
   var file_name = decodeURIComponent(path.trim("/").split("/").slice(-1)[0].replaceAll("%5C%5C", "%5C"));
   console.log(url, file_name);
+  alert(url);
   let player_items = [
     {
       text: "MXPlayer(Free)",
@@ -6310,6 +6311,7 @@ function file_video(path) {
     successVideoCallback,
     null
   );
+  console.log('JW DEBUG');
 
   var player = jwplayer("video_container");
   player.setup({
